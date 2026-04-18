@@ -1,9 +1,9 @@
 ---
 title: "**PRÁTICA ESTATÍSTICA II**"
-subtitle: "**ATIVIDADE AVALIATIVA 0**"
-author: "Nome1 (<seuemail1@id.uff.br>) <br> Nome2 (<seuemail2@id.uff.br>)"
+subtitle: "**ATIVIDADE AVALIATIVA 5**"
+author: "Agatha Dias Roque (<Agathadias@id.uff.br>) <br> Vitor Eduardo Bezerra Ferreira (<ferreiravitor@id.uff.br>)"
 date: today
-date-format: "DD/MM/YYYY"
+date-format: "27/04/2026"
 institute: "Universidade Federal Fluminense"
 format:
   revealjs:
@@ -21,25 +21,88 @@ format:
       data-background-size: cover
 ---
 
-# **PRIMEIRO CAPÍTULO**{data-background-image="Capa.png" style="text-align:center"}
+# **ANOVA DE WELCH**{data-background-image="Capa.png" style="text-align:center"}
 
-## **PRIMEIRA SEÇÃO**
+## **Contexto**
+
+A ANOVA testa a igualdade de médias populacionais:
+
+$$H_0 : \mu_1 = \mu_2 = ... = \mu_k  $$
+<br>
+**Estatística de teste:**
+
+$$F = \frac{QM_{Entre}}{QM_{Dentro}}$$ 
+
+Onde:
+
+$$
+\begin{aligned}
+&QM_{Entre}:\text{Variabilidade entre grupos}\\
+&QM_{Dentro}: \text{Variabilidade dentro dos grupos}
+\end{aligned}
+$$
+
+## 
+::: box-green
+**Suposições principais**
+
+$$
+\begin{aligned}
+&-\text{Independência}\\
+&-\text{Normalidade}\\
+&-\text{Homogeneidade das variâncias}: \sigma_1^2 = \sigma_2^2 = \cdots = \sigma_k^2
+\end{aligned}
+$$
+:::
+<br>
+
+**Onde a homogeneidade é usada**
+
+
+A ANOVA usa um estimador pooled da variância, ou seja:
+
+$$QM_{Dentro} = \frac{\sum(n_i−1)s_i^2}{\sum(n_i-1)}$$
+
+Isso só é válido se todas as variâncias populacionais forem iguais.
+
+
+## **Heterogeneidade de variâncias**
+<br>
+
+**Problema central:**
+
+- Grupos com maior variância **inflam o erro**
+- Grupos com menor variância **ganham peso indevido**
+
+<br>
+**Resultado:**
+
+- A estatística F **não segue mais a distribuição F**
+- O nível de significância (α) fica errado:
+  - Pode aumentar falso positivo (liberal)
+  - Ou reduzir poder (conservador)
+
+## **Teste de Tukey (comparações múltiplas)**
+
+Baseado na distribuição do intervalo studentizado:
+
+$$q =\frac{\bar{X_i}-\bar{X_j}}{\sqrt{\frac{QM_{Dentro}}{n}}} $$
+<br>
+
+- Mesma variância
+- Mesmos tamanhos (ou aproximadamente)
+<br>
+
+::: box-blue
+Sofre o mesmo problema da ANOVA clássica
+:::
 
 ## **BLOCOS**
 
-::: box-blue
-Este é um bloco azul.
-:::
 
-::: box-green
-Este é um bloco verde.
-:::
 
-::: box-purple
-**TÍTULO OPCIONAL**
 
-Este é um bloco roxo.
-:::
+
 
 ::: box-orange
 Este é um bloco laranja.

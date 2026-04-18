@@ -9,7 +9,7 @@
 <link href="index_files/libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.9.36">
 
-  <meta name="author" content="Nome1 (seuemail1@id.uff.br)   Nome2 (seuemail2@id.uff.br)">
+  <meta name="author" content="Agatha Dias Roque (Agathadias@id.uff.br)   Vitor Eduardo Bezerra Ferreira (ferreiravitor@id.uff.br)">
   <title>PRÁTICA ESTATÍSTICA II</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -132,12 +132,12 @@
 
 <section id="title-slide" data-background-image="Capa.png" data-background-size="cover" class="quarto-title-block center">
   <h1 class="title"><strong>PRÁTICA ESTATÍSTICA II</strong></h1>
-  <p class="subtitle"><strong>ATIVIDADE AVALIATIVA 0</strong></p>
+  <p class="subtitle"><strong>ATIVIDADE AVALIATIVA 5</strong></p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
 <div class="quarto-title-author-name">
-Nome1 (<a href="mailto:seuemail1@id.uff.br" class="email">seuemail1@id.uff.br</a>) <br> Nome2 (<a href="mailto:seuemail2@id.uff.br" class="email">seuemail2@id.uff.br</a>) 
+Agatha Dias Roque (<a href="mailto:Agathadias@id.uff.br" class="email">Agathadias@id.uff.br</a>) <br> Vitor Eduardo Bezerra Ferreira (<a href="mailto:ferreiravitor@id.uff.br" class="email">ferreiravitor@id.uff.br</a>) 
 </div>
         <p class="quarto-title-affiliation">
             Universidade Federal Fluminense
@@ -145,28 +145,76 @@ Nome1 (<a href="mailto:seuemail1@id.uff.br" class="email">seuemail1@id.uff.br</a
     </div>
 </div>
 
-  <p class="date">18/04/2026</p>
+  <p class="date">27/04/2026</p>
 </section>
 <section>
-<section id="primeiro-capítulo" class="title-slide slide level1 center" data-background-image="Capa.png" style="text-align:center">
-<h1><strong>PRIMEIRO CAPÍTULO</strong></h1>
+<section id="anova-de-welch" class="title-slide slide level1 center" data-background-image="Capa.png" style="text-align:center">
+<h1><strong>ANOVA DE WELCH</strong></h1>
 
 </section>
-<section id="primeira-seção" class="slide level2">
-<h2><strong>PRIMEIRA SEÇÃO</strong></h2>
+<section id="contexto" class="slide level2">
+<h2><strong>Contexto</strong></h2>
+<p>A ANOVA testa a igualdade de médias populacionais:</p>
+<p><span class="math display">\[H_0 : \mu_1 = \mu_2 = ... = \mu_k  \]</span> <br> <strong>Estatística de teste:</strong></p>
+<p><span class="math display">\[F = \frac{QM_{Entre}}{QM_{Dentro}}\]</span></p>
+<p>Onde:</p>
+<p><span class="math display">\[
+\begin{aligned}
+&amp;QM_{Entre}:\text{Variabilidade entre grupos}\\
+&amp;QM_{Dentro}: \text{Variabilidade dentro dos grupos}
+\end{aligned}
+\]</span></p>
+</section>
+<section id="section" class="slide level2">
+<h2></h2>
+<div class="box-green">
+<p><strong>Suposições principais</strong></p>
+<p><span class="math display">\[
+\begin{aligned}
+&amp;-\text{Independência}\\
+&amp;-\text{Normalidade}\\
+&amp;-\text{Homogeneidade das variâncias}: \sigma_1^2 = \sigma_2^2 = \cdots = \sigma_k^2
+\end{aligned}
+\]</span></p>
+</div>
+<p><br></p>
+<p><strong>Onde a homogeneidade é usada</strong></p>
+<p>A ANOVA usa um estimador pooled da variância, ou seja:</p>
+<p><span class="math display">\[QM_{Dentro} = \frac{\sum(n_i−1)s_i^2}{\sum(n_i-1)}\]</span></p>
+<p>Isso só é válido se todas as variâncias populacionais forem iguais.</p>
+</section>
+<section id="heterogeneidade-de-variâncias" class="slide level2">
+<h2><strong>Heterogeneidade de variâncias</strong></h2>
+<p><br></p>
+<p><strong>Problema central:</strong></p>
+<ul>
+<li>Grupos com maior variância <strong>inflam o erro</strong></li>
+<li>Grupos com menor variância <strong>ganham peso indevido</strong></li>
+</ul>
+<p><br> <strong>Resultado:</strong></p>
+<ul>
+<li>A estatística F <strong>não segue mais a distribuição F</strong></li>
+<li>O nível de significância (α) fica errado:
+<ul>
+<li>Pode aumentar falso positivo (liberal)</li>
+<li>Ou reduzir poder (conservador)</li>
+</ul></li>
+</ul>
+</section>
+<section id="teste-de-tukey-comparações-múltiplas" class="slide level2">
+<h2><strong>Teste de Tukey (comparações múltiplas)</strong></h2>
+<p>Baseado na distribuição do intervalo studentizado:</p>
+<p><span class="math display">\[q =\frac{\bar{X_i}-\bar{X_j}}{\sqrt{\frac{QM_{Dentro}}{n}}} \]</span> <br></p>
+<ul>
+<li>Mesma variância</li>
+<li>Mesmos tamanhos (ou aproximadamente) <br></li>
+</ul>
+<div class="box-blue">
+<p>Sofre o mesmo problema da ANOVA clássica</p>
+</div>
 </section>
 <section id="blocos" class="slide level2">
 <h2><strong>BLOCOS</strong></h2>
-<div class="box-blue">
-<p>Este é um bloco azul.</p>
-</div>
-<div class="box-green">
-<p>Este é um bloco verde.</p>
-</div>
-<div class="box-purple">
-<p><strong>TÍTULO OPCIONAL</strong></p>
-<p>Este é um bloco roxo.</p>
-</div>
 <div class="box-orange">
 <p>Este é um bloco laranja.</p>
 </div>
