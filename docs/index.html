@@ -148,11 +148,11 @@ Agatha Dias Roque (<a href="mailto:Agathadias@id.uff.br" class="email">Agathadia
   <p class="date">27/04/2026</p>
 </section>
 <section>
-<section id="anova-de-welch" class="title-slide slide level1 center" data-background-image="Capa.png" style="text-align:center">
-<h1><strong>ANOVA DE WELCH</strong></h1>
+<section id="contexto" class="title-slide slide level1 center" data-background-image="Capa.png" style="text-align:center">
+<h1><strong>CONTEXTO </strong></h1>
 
 </section>
-<section id="contexto" class="slide level2">
+<section id="contexto-1" class="slide level2">
 <h2><strong>Contexto</strong></h2>
 <p>A ANOVA testa a igualdade de médias populacionais:</p>
 <p><span class="math display">\[H_0 : \mu_1 = \mu_2 = ... = \mu_k  \]</span> <br> <strong>Estatística de teste:</strong></p>
@@ -212,12 +212,70 @@ Agatha Dias Roque (<a href="mailto:Agathadias@id.uff.br" class="email">Agathadia
 <div class="box-blue">
 <p>Sofre o mesmo problema da ANOVA clássica</p>
 </div>
+</section></section>
+<section>
+<section id="anova-de-welch" class="title-slide slide level1 center" data-background-image="Capa.png" style="text-align:center">
+<h1><strong>ANOVA DE WELCH</strong></h1>
+
+</section>
+<section id="o-que-muda" class="slide level2">
+<h2>O que muda?</h2>
+<ol type="1">
+<li>Cada grupo recebe peso próprio</li>
+<li>Variâncias não são combinadas diretamente</li>
+<li>Graus de liberdade são ajustados</li>
+</ol>
+<p><br></p>
+<p><strong>Pesos utilizados</strong></p>
+<p><span class="math display">\[w_i = \frac{n_i}{s_i^2}\]</span> <strong>Média ponderada</strong></p>
+<p><span class="math display">\[\bar{X_w} = \frac{\sum w_i\bar{X_i}}{\sum w_i} \]</span></p>
+</section>
+<section id="estatística-de-welch" class="slide level2">
+<h2><strong>Estatística de Welch</strong></h2>
+<p><span class="math display">\[ F_W = \frac{\sum w_i(\bar{X_i}-\bar{X_w})^2 / (k-1)}{1+\frac{2(k-2)}{k^2-1}\sum \frac{1}{n_i-1}(1-\frac{w_i}{\sum w_i})^2}\]</span> ::: box-orange <strong>Graus de liberdade (Welch-Satterthwaite)</strong> - A distribuição F é <strong>ajustada</strong> :::</p>
+</section></section>
+<section>
+<section id="teste-de-games-howell" class="title-slide slide level1 center" data-background-image="Capa.png" style="text-align:center">
+<h1><strong>TESTE DE GAMES-HOWELL</strong></h1>
+
+</section>
+<section id="problema-do-tukey" class="slide level2">
+<h2>Problema do Tukey</h2>
+<p><br></p>
+<p>Ele usa:</p>
+<ul>
+<li>Variância pooled</li>
+<li>Mesmo erro padrão para todos os pares</li>
+</ul>
+<p>Isso quebra quando: Variâncias e tamanhos <strong>diferentes</strong></p>
+<p><br></p>
+<p><strong>Ideia do Games–Howell</strong></p>
+<p>Para cada par (i,j):</p>
+<ol type="1">
+<li>Usa variâncias específicas</li>
+<li>Usa graus de liberdade específicos</li>
+<li>Não assume igualdade de n</li>
+</ol>
+</section>
+<section id="section-1" class="slide level2">
+<h2></h2>
+<p><strong>Estatística de teste</strong></p>
+<p><span class="math display">\[ q_{ij} = \frac{\bar{X_i}- \bar{X_j}}{\sqrt{\frac{s_i^2}{n_i}+\frac{s_j^2}{n_j}}}\]</span></p>
+<p><strong>Graus de liberdade</strong></p>
+<p><span class="math display">\[\nu_{ij} = \frac{(\frac{s_i^2}{n_i}+\frac{s_j^2}{n_j})^2}{\frac{(s_i^2/n_i)^2}{n_i-1}+\frac{(s_j^2/n_j)^2}{n_j-1}}\]</span> <strong>Distribuição utilizada</strong></p>
+<p>Continua usando o intervalo studentizado (q), mas com: - erro padrão específico - graus de liberdade ajustados</p>
+</section></section>
+<section>
+<section id="referência" class="title-slide slide level1 center" data-background-image="Capa.png" style="text-align:center">
+<h1><strong>Referência</strong></h1>
+
+</section>
+<section id="section-2" class="slide level2">
+<h2></h2>
+<p><strong>Games, P. A., &amp; Howell, J. F. (1976). Pairwise multiple comparison procedures with unequal n’s and/or variances</strong></p>
 </section>
 <section id="blocos" class="slide level2">
 <h2><strong>BLOCOS</strong></h2>
-<div class="box-orange">
-<p>Este é um bloco laranja.</p>
-</div>
 </section>
 <section id="lista-não-ordenada" class="slide level2">
 <h2><strong>LISTA NÃO ORDENADA</strong></h2>

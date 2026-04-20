@@ -21,7 +21,7 @@ format:
       data-background-size: cover
 ---
 
-# **ANOVA DE WELCH**{data-background-image="Capa.png" style="text-align:center"}
+# **CONTEXTO **{data-background-image="Capa.png" style="text-align:center"}
 
 ## **Contexto**
 
@@ -97,161 +97,70 @@ $$q =\frac{\bar{X_i}-\bar{X_j}}{\sqrt{\frac{QM_{Dentro}}{n}}} $$
 Sofre o mesmo problema da ANOVA clássica
 :::
 
-## **BLOCOS**
+# **ANOVA DE WELCH**{data-background-image="Capa.png" style="text-align:center"}
 
+## O que muda?
 
+1. Cada grupo recebe peso próprio
+2. Variâncias não são combinadas diretamente
+3. Graus de liberdade são ajustados
 
+<br>
 
+**Pesos utilizados**
 
+$$w_i = \frac{n_i}{s_i^2}$$
+**Média ponderada**
 
+$$\bar{X_w} = \frac{\sum w_i\bar{X_i}}{\sum w_i} $$
+
+## **Estatística de Welch**
+
+$$ F_W = \frac{\sum w_i(\bar{X_i}-\bar{X_w})^2 / (k-1)}{1+\frac{2(k-2)}{k^2-1}\sum \frac{1}{n_i-1}(1-\frac{w_i}{\sum w_i})^2}$$
 ::: box-orange
-Este é um bloco laranja.
+**Graus de liberdade (Welch-Satterthwaite)**
+- A distribuição F é **ajustada**
 :::
 
-## **LISTA NÃO ORDENADA**
+# **TESTE DE GAMES-HOWELL**{data-background-image="Capa.png" style="text-align:center"}
 
-::: box-blue
-- Estatística
-- Matemática
-- Programação
-:::
+## Problema do Tukey
+<br>
 
-## **LISTA NÃO ORDENADA ANINHADA**
-- Frutas
-    - Maçã
-    - Banana
-- Verduras
-    - Alface
-    - Cenoura
-    
-## LISTA ORDENADA
+Ele usa:
 
-:::box-orange
-1. Coletar dados
-2. Organizar informações
-3. Aplicar análise estatística
-:::
+- Variância pooled
+- Mesmo erro padrão para todos os pares
 
-## **LISTAS ORDENADAS ANINHADAS**
+Isso quebra quando: Variâncias e tamanhos **diferentes**
 
-1. Preparação
-    1. Coletar materiais
-    2. Definir objetivos
-2. Execução
+<br>
 
-## **LISTA DE TAREFAS**
+**Ideia do Games–Howell**
 
-::: box-purple
-- [x] Comprar leite
-- [ ] Estudar Quarto
-- [ ] Enviar relatório
-:::
+Para cada par (i,j):
 
-## **LINKS**
-Confira a documentação oficial do [Quarto](https://quarto.org).
+1. Usa variâncias específicas
+2. Usa graus de liberdade específicos
+3. Não assume igualdade de n
 
-## **EQUAÇÕES**
-A reta é descrita por $y = mx + b$.
+## 
+**Estatística de teste**
 
-Segue uma equação de destaque:
-$$
-y = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}
-$$
+$$ q_{ij} = \frac{\bar{X_i}- \bar{X_j}}{\sqrt{\frac{s_i^2}{n_i}+\frac{s_j^2}{n_j}}}$$
 
-Mais exemplos:
+**Graus de liberdade**
 
-* Frações: $\frac{a}{b}$
-* Raiz quadrada: $\sqrt{x}$
-* Expoentes: $x^2$
-* Índices: $x_i$
-* Somatórios:  $\sum_{i=1}^{n} x_i$
+$$\nu_{ij} = \frac{(\frac{s_i^2}{n_i}+\frac{s_j^2}{n_j})^2}{\frac{(s_i^2/n_i)^2}{n_i-1}+\frac{(s_j^2/n_j)^2}{n_j-1}}$$
+**Distribuição utilizada**
 
-## **IMAGENS**
-![](Rstudio.png){style="width:50%;"}
+Continua usando o intervalo studentizado (q), mas com:
+- erro padrão específico
+- graus de liberdade ajustados
 
-## **IMAGENS COM EDIÇÕES**
-![](Rstudio.png){fig-align="center" width=100%}
 
-## **TABELAS**
-| Disciplina     | Professor        | Horário   |
-|----------------|-----------------|-----------|
-| Estatística    | Prof. Guilherme | 08h-10h   |
-| Matemática     | Prof. Ana       | 10h-12h   |
-| Programação    | Prof. João      | 14h-16h   |
+# **Referência**{data-background-image="Capa.png" style="text-align:center"}
 
-| Produto | Preço | Quantidade |
-|:--------|------:|:----------:|
-| Lápis   |  1.50 |     10     |
-| Caderno | 12.00 |     5      |
-| Mochila | 75.00 |     1      |
+##
 
-## **SLIDE COM ABAS**
-
-::: {.panel-tabset}
-
-### Aba 1
-
-Conteúdo da primeira aba.
-
-### Aba 2
-
-Conteúdo da segunda aba.
-
-### Aba 3
-
-Conteúdo da terceira aba.
-
-:::
-
-## Exemplo de colunas
-
-:::: columns
-
-::: {.column width="60%"}
-- Esta é a primeira coluna
-- Ela ocupa **60% da largura**
-:::
-
-::: {.column width="40%"}
-- Esta é a segunda coluna
-- Ela ocupa **40% da largura**
-:::
-
-::::
-
-## *SCROLLING* {.scrollable}
-
-Este slide demonstra o uso da classe **scrollable**, que permite adicionar **rolagem vertical** quando o conteúdo é muito grande.
-
-Este é um exemplo de texto genérico utilizado apenas para preencher o slide e demonstrar como o conteúdo pode ultrapassar a altura da tela.
-
-- Item 1
-- Item 2
-- Item 3
-- Item 4
-- Item 5
-
-Quando há muito conteúdo, o slide normalmente ficaria visualmente sobrecarregado. Com o uso de `scrollable`, é possível manter tudo em um único slide e permitir que o usuário role o conteúdo.
-
-- Item A
-- Item B
-- Item C
-- Item D
-- Item E
-
-## **CRIANDO UMA CHUNK**
-```{r}
-x <- 1:10
-hist(x)
-```
-
-## CHUNK COM NOME
-```{r boxplot}
-x <- 1:10
-boxplot(x)
-```
-
-## **CHUNK PERSONALIZADA**
-```{r, fig.width=10, fig.height=4}
-hist(rnorm(100), col="skyblue", main="Histograma")
-```
+**Games, P. A., & Howell, J. F. (1976). Pairwise multiple comparison procedures with unequal n’s and/or variances**
