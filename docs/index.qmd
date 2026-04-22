@@ -95,6 +95,7 @@ $$q =\frac{\bar{X_i}-\bar{X_j}}{\sqrt{\frac{QM_{Dentro}}{n}}} $$
 
 ::: box-blue
 Sofre o mesmo problema da ANOVA clássica
+
 :::
 
 # **ANOVA DE WELCH**{data-background-image="Capa.png" style="text-align:center"}
@@ -117,10 +118,15 @@ $$\bar{X_w} = \frac{\sum w_i\bar{X_i}}{\sum w_i} $$
 ## **Estatística de Welch**
 
 $$ F_W = \frac{\sum w_i(\bar{X_i}-\bar{X_w})^2 / (k-1)}{1+\frac{2(k-2)}{k^2-1}\sum \frac{1}{n_i-1}(1-\frac{w_i}{\sum w_i})^2}$$
-::: box-orange
+<br>
+
+::: box-blue
 **Graus de liberdade (Welch-Satterthwaite)**
+
 - A distribuição F é **ajustada**
+
 :::
+
 
 # **TESTE DE GAMES-HOWELL**{data-background-image="Capa.png" style="text-align:center"}
 
