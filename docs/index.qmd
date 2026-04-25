@@ -25,9 +25,9 @@ format:
 
 ## **Contexto**
 
-A ANOVA testa a igualdade de médias populacionais:
+A ANOVA testa a igualdade de médias populacionais de $k$ grupos independentes:
 
-$$H_0 : \mu_1 = \mu_2 = ... = \mu_k  $$
+$$H_0 : \mu_1 = \mu_2 = \dots = \mu_k$$
 <br>
 **Estatística de teste:**
 
@@ -50,23 +50,20 @@ $$
 \begin{aligned}
 &-\text{Independência}\\
 &-\text{Normalidade}\\
-&-\text{Homogeneidade das variâncias}: \sigma_1^2 = \sigma_2^2 = \cdots = \sigma_k^2
+&-\text{Homocedasticidade}: \sigma_1^2 = \sigma_2^2 = \cdots = \sigma_k^2
 \end{aligned}
 $$
 :::
 <br>
 
-**Onde a homogeneidade é usada**
+**Onde a Homocedasticidade é usada?**
 
 
-A ANOVA usa um estimador pooled da variância, ou seja:
+A ANOVA usa um estimador **Variância Agrupada** (*Pooled Variance*), ou seja:
 
 $$QM_{Dentro} = \frac{\sum(n_i−1)s_i^2}{\sum(n_i-1)}$$
 
-Isso só é válido se todas as variâncias populacionais forem iguais.
-
-
-## **Heterogeneidade de variâncias**
+## **O Problema da Heterocedasticidade**
 <br>
 
 **Problema central:**
@@ -77,7 +74,7 @@ Isso só é válido se todas as variâncias populacionais forem iguais.
 <br>
 **Resultado:**
 
-- A estatística F **não segue mais a distribuição F**
+- A estatística $F$ **não segue mais a distribuição $F$ teórica**
 - O nível de significância (α) fica errado:
   - Pode aumentar falso positivo (liberal)
   - Ou reduzir poder (conservador)
@@ -86,7 +83,7 @@ Isso só é válido se todas as variâncias populacionais forem iguais.
 
 Baseado na distribuição do intervalo studentizado:
 
-$$q =\frac{\bar{X_i}-\bar{X_j}}{\sqrt{\frac{QM_{Dentro}}{n}}} $$
+$$q =\frac{\bar{X}_i-\bar{X}_j}{\sqrt{\frac{QM_{Dentro}}{n}}} $$
 <br>
 
 - Mesma variância
@@ -113,11 +110,11 @@ Sofre o mesmo problema da ANOVA clássica
 $$w_i = \frac{n_i}{s_i^2}$$
 **Média ponderada**
 
-$$\bar{X_w} = \frac{\sum w_i\bar{X_i}}{\sum w_i} $$
+$$\bar{X}_w = \frac{\sum w_i\bar{X}_i}{\sum w_i} $$
 
 ## **Estatística de Welch**
 
-$$ F_W = \frac{\sum w_i(\bar{X_i}-\bar{X_w})^2 / (k-1)}{1+\frac{2(k-2)}{k^2-1}\sum \frac{1}{n_i-1}(1-\frac{w_i}{\sum w_i})^2}$$
+$$F_W = \frac{\frac{\sum w_i(\bar{X}_i - \bar{X}_w)^2}{k-1}}{1 + \frac{2(k-2)}{k^2-1} \sum \frac{1}{n_i-1} \left( 1 - \frac{w_i}{\sum w_i} \right)^2}$$
 <br>
 
 ::: box-blue
@@ -130,40 +127,57 @@ $$ F_W = \frac{\sum w_i(\bar{X_i}-\bar{X_w})^2 / (k-1)}{1+\frac{2(k-2)}{k^2-1}\s
 
 # **TESTE DE GAMES-HOWELL**{data-background-image="Capa.png" style="text-align:center"}
 
-## Problema do Tukey
-<br>
+## **A Adaptação do Teste de Tukey**
 
-Ele usa:
+O teste de Games-Howell (1976) é a evolução robusta do Tukey para cenários de heterocedasticidade e tamanhos amostrais desiguais.
 
-- Variância pooled
-- Mesmo erro padrão para todos os pares
+:::: columns
 
+::: {.column width="50%"}
+**Tukey (Clássico)**
+
+- Usa variância agrupada (pooled variance).
+- Erro padrão único para todos os pares.
+- Graus de liberdade fixos ($N - k$).
+
+
+::: box-blue
 Isso quebra quando: Variâncias e tamanhos **diferentes**
 
-<br>
+:::
+:::
 
-**Ideia do Games–Howell**
+::: {.column width="50%"}
+**Games-Howell (Robusto)**
 
-Para cada par (i,j):
+- Usa variâncias individuais.
+- Erro padrão específico para cada par.
+- Graus de liberdade ajustados para cada par.
+:::
 
-1. Usa variâncias específicas
-2. Usa graus de liberdade específicos
-3. Não assume igualdade de n
+::::
 
-## 
+##
 **Estatística de teste**
 
-$$ q_{ij} = \frac{\bar{X_i}- \bar{X_j}}{\sqrt{\frac{s_i^2}{n_i}+\frac{s_j^2}{n_j}}}$$
+$$q_{ij} = \frac{\bar{X}_i - \bar{X}_j}{\sqrt{\frac{s_i^2}{n_i} + \frac{s_j^2}{n_j}}}$$
 
-**Graus de liberdade**
+**Graus de liberdade ($\nu$):**
 
-$$\nu_{ij} = \frac{(\frac{s_i^2}{n_i}+\frac{s_j^2}{n_j})^2}{\frac{(s_i^2/n_i)^2}{n_i-1}+\frac{(s_j^2/n_j)^2}{n_j-1}}$$
+$$\nu_{ij} = \frac{\left( \frac{s_i^2}{n_i} + \frac{s_j^2}{n_j} \right)^2}{\frac{(s_i^2/n_i)^2}{n_i-1} + \frac{(s_j^2/n_j)^2}{n_j-1}}$$
 **Distribuição utilizada**
 
 Continua usando o intervalo studentizado (q), mas com:
-- erro padrão específico
-- graus de liberdade ajustados
 
+:::: columns
+
+::: {.column width="50%"}
+- erro padrão específico
+:::
+::: {.column width="50%"}
+- graus de liberdade ajustados
+:::
+::::
 
 # **Referência**{data-background-image="Capa.png" style="text-align:center"}
 

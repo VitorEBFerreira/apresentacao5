@@ -154,8 +154,8 @@ Agatha Dias Roque (<a href="mailto:Agathadias@id.uff.br" class="email">Agathadia
 </section>
 <section id="contexto-1" class="slide level2">
 <h2><strong>Contexto</strong></h2>
-<p>A ANOVA testa a igualdade de médias populacionais:</p>
-<p><span class="math display">\[H_0 : \mu_1 = \mu_2 = ... = \mu_k  \]</span> <br> <strong>Estatística de teste:</strong></p>
+<p>A ANOVA testa a igualdade de médias populacionais de <span class="math inline">\(k\)</span> grupos independentes:</p>
+<p><span class="math display">\[H_0 : \mu_1 = \mu_2 = \dots = \mu_k\]</span> <br> <strong>Estatística de teste:</strong></p>
 <p><span class="math display">\[F = \frac{QM_{Entre}}{QM_{Dentro}}\]</span></p>
 <p>Onde:</p>
 <p><span class="math display">\[
@@ -173,18 +173,17 @@ Agatha Dias Roque (<a href="mailto:Agathadias@id.uff.br" class="email">Agathadia
 \begin{aligned}
 &amp;-\text{Independência}\\
 &amp;-\text{Normalidade}\\
-&amp;-\text{Homogeneidade das variâncias}: \sigma_1^2 = \sigma_2^2 = \cdots = \sigma_k^2
+&amp;-\text{Homocedasticidade}: \sigma_1^2 = \sigma_2^2 = \cdots = \sigma_k^2
 \end{aligned}
 \]</span></p>
 </div>
 <p><br></p>
-<p><strong>Onde a homogeneidade é usada</strong></p>
-<p>A ANOVA usa um estimador pooled da variância, ou seja:</p>
+<p><strong>Onde a Homocedasticidade é usada?</strong></p>
+<p>A ANOVA usa um estimador <strong>Variância Agrupada</strong> (<em>Pooled Variance</em>), ou seja:</p>
 <p><span class="math display">\[QM_{Dentro} = \frac{\sum(n_i−1)s_i^2}{\sum(n_i-1)}\]</span></p>
-<p>Isso só é válido se todas as variâncias populacionais forem iguais.</p>
 </section>
-<section id="heterogeneidade-de-variâncias" class="slide level2">
-<h2><strong>Heterogeneidade de variâncias</strong></h2>
+<section id="o-problema-da-heterocedasticidade" class="slide level2">
+<h2><strong>O Problema da Heterocedasticidade</strong></h2>
 <p><br></p>
 <p><strong>Problema central:</strong></p>
 <ul>
@@ -193,7 +192,7 @@ Agatha Dias Roque (<a href="mailto:Agathadias@id.uff.br" class="email">Agathadia
 </ul>
 <p><br> <strong>Resultado:</strong></p>
 <ul>
-<li>A estatística F <strong>não segue mais a distribuição F</strong></li>
+<li>A estatística <span class="math inline">\(F\)</span> <strong>não segue mais a distribuição <span class="math inline">\(F\)</span> teórica</strong></li>
 <li>O nível de significância (α) fica errado:
 <ul>
 <li>Pode aumentar falso positivo (liberal)</li>
@@ -204,7 +203,7 @@ Agatha Dias Roque (<a href="mailto:Agathadias@id.uff.br" class="email">Agathadia
 <section id="teste-de-tukey-comparações-múltiplas" class="slide level2">
 <h2><strong>Teste de Tukey (comparações múltiplas)</strong></h2>
 <p>Baseado na distribuição do intervalo studentizado:</p>
-<p><span class="math display">\[q =\frac{\bar{X_i}-\bar{X_j}}{\sqrt{\frac{QM_{Dentro}}{n}}} \]</span> <br></p>
+<p><span class="math display">\[q =\frac{\bar{X}_i-\bar{X}_j}{\sqrt{\frac{QM_{Dentro}}{n}}} \]</span> <br></p>
 <ul>
 <li>Mesma variância</li>
 <li>Mesmos tamanhos (ou aproximadamente) <br></li>
@@ -228,11 +227,11 @@ Agatha Dias Roque (<a href="mailto:Agathadias@id.uff.br" class="email">Agathadia
 <p><br></p>
 <p><strong>Pesos utilizados</strong></p>
 <p><span class="math display">\[w_i = \frac{n_i}{s_i^2}\]</span> <strong>Média ponderada</strong></p>
-<p><span class="math display">\[\bar{X_w} = \frac{\sum w_i\bar{X_i}}{\sum w_i} \]</span></p>
+<p><span class="math display">\[\bar{X}_w = \frac{\sum w_i\bar{X}_i}{\sum w_i} \]</span></p>
 </section>
 <section id="estatística-de-welch" class="slide level2">
 <h2><strong>Estatística de Welch</strong></h2>
-<p><span class="math display">\[ F_W = \frac{\sum w_i(\bar{X_i}-\bar{X_w})^2 / (k-1)}{1+\frac{2(k-2)}{k^2-1}\sum \frac{1}{n_i-1}(1-\frac{w_i}{\sum w_i})^2}\]</span> <br></p>
+<p><span class="math display">\[F_W = \frac{\frac{\sum w_i(\bar{X}_i - \bar{X}_w)^2}{k-1}}{1 + \frac{2(k-2)}{k^2-1} \sum \frac{1}{n_i-1} \left( 1 - \frac{w_i}{\sum w_i} \right)^2}\]</span> <br></p>
 <div class="box-blue">
 <p><strong>Graus de liberdade (Welch-Satterthwaite)</strong></p>
 <ul>
@@ -245,31 +244,46 @@ Agatha Dias Roque (<a href="mailto:Agathadias@id.uff.br" class="email">Agathadia
 <h1><strong>TESTE DE GAMES-HOWELL</strong></h1>
 
 </section>
-<section id="problema-do-tukey" class="slide level2">
-<h2>Problema do Tukey</h2>
-<p><br></p>
-<p>Ele usa:</p>
+<section id="a-adaptação-do-teste-de-tukey" class="slide level2">
+<h2><strong>A Adaptação do Teste de Tukey</strong></h2>
+<p>O teste de Games-Howell (1976) é a evolução robusta do Tukey para cenários de heterocedasticidade e tamanhos amostrais desiguais.</p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>Tukey (Clássico)</strong></p>
 <ul>
-<li>Variância pooled</li>
-<li>Mesmo erro padrão para todos os pares</li>
+<li>Usa variância agrupada (pooled variance).</li>
+<li>Erro padrão único para todos os pares.</li>
+<li>Graus de liberdade fixos (<span class="math inline">\(N - k\)</span>).</li>
 </ul>
+<div class="box-blue">
 <p>Isso quebra quando: Variâncias e tamanhos <strong>diferentes</strong></p>
-<p><br></p>
-<p><strong>Ideia do Games–Howell</strong></p>
-<p>Para cada par (i,j):</p>
-<ol type="1">
-<li>Usa variâncias específicas</li>
-<li>Usa graus de liberdade específicos</li>
-<li>Não assume igualdade de n</li>
-</ol>
+</div>
+</div><div class="column" style="width:50%;">
+<p><strong>Games-Howell (Robusto)</strong></p>
+<ul>
+<li>Usa variâncias individuais.</li>
+<li>Erro padrão específico para cada par.</li>
+<li>Graus de liberdade ajustados para cada par.</li>
+</ul>
+</div></div>
 </section>
 <section id="section-1" class="slide level2">
 <h2></h2>
 <p><strong>Estatística de teste</strong></p>
-<p><span class="math display">\[ q_{ij} = \frac{\bar{X_i}- \bar{X_j}}{\sqrt{\frac{s_i^2}{n_i}+\frac{s_j^2}{n_j}}}\]</span></p>
-<p><strong>Graus de liberdade</strong></p>
-<p><span class="math display">\[\nu_{ij} = \frac{(\frac{s_i^2}{n_i}+\frac{s_j^2}{n_j})^2}{\frac{(s_i^2/n_i)^2}{n_i-1}+\frac{(s_j^2/n_j)^2}{n_j-1}}\]</span> <strong>Distribuição utilizada</strong></p>
-<p>Continua usando o intervalo studentizado (q), mas com: - erro padrão específico - graus de liberdade ajustados</p>
+<p><span class="math display">\[q_{ij} = \frac{\bar{X}_i - \bar{X}_j}{\sqrt{\frac{s_i^2}{n_i} + \frac{s_j^2}{n_j}}}\]</span></p>
+<p><strong>Graus de liberdade (<span class="math inline">\(\nu\)</span>):</strong></p>
+<p><span class="math display">\[\nu_{ij} = \frac{\left( \frac{s_i^2}{n_i} + \frac{s_j^2}{n_j} \right)^2}{\frac{(s_i^2/n_i)^2}{n_i-1} + \frac{(s_j^2/n_j)^2}{n_j-1}}\]</span> <strong>Distribuição utilizada</strong></p>
+<p>Continua usando o intervalo studentizado (q), mas com:</p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<ul>
+<li>erro padrão específico</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<ul>
+<li>graus de liberdade ajustados</li>
+</ul>
+</div></div>
 </section></section>
 <section>
 <section id="referência" class="title-slide slide level1 center" data-background-image="Capa.png" style="text-align:center">
